@@ -1,0 +1,4 @@
+:HL["/anand-roy/_next/static/chunks/191a017acc6bce4d.css","style"]
+:HL["/anand-roy/_next/static/chunks/ddb1084701f62ec0.css","style"]
+:HL["/anand-roy/anand.png","image"]
+0:{"buildId":"ul_4GH57VZJgsMu7apkFJ","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
