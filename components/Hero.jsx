@@ -1,12 +1,13 @@
+'use client';
 import { motion } from "framer-motion";
-import {styles} from '../styles'
+import { styles } from '../styles'
 
 import { ComputersCanvas } from "./canvas";
 import { Typewriter } from 'react-simple-typewriter'
 
 
 const Hero = () => {
-  const services = ['Mobile App Developement','RPA Automation','Front End Development', 'Back End Development', 'Full Stack Development']
+  const services = ['Mobile App Developement', 'RPA Automation', 'Front End Development', 'Back End Development', 'Full Stack Development']
   return (
     <section className={`relative w-full h-screen mx-auto mt-[50px]`}>
       <div
@@ -28,24 +29,24 @@ const Hero = () => {
             Transforming Ideas into Powerful Web Solutions & Intuitive Mobile Apps
           </p>
           <h1 className="mt-2 text-white-100">
-        Technologies I am experienced in {' '}
-        <span className="font-bold text-violet-600 text-xl sm:text-2xl">
-          {/* Style will be inherited from the parent element */}
-          <Typewriter
-            words={services}
-            loop={0}
-            cursor
-            cursorStyle='|'
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
-        </span>
+            Technologies I am experienced in {' '}
+            <span className="font-bold text-violet-600 text-xl sm:text-2xl">
+              {/* Style will be inherited from the parent element */}
+              <Typewriter
+                words={services}
+                loop={0}
+                cursor
+                cursorStyle='|'
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </span>
           </h1>
         </div>
       </div>
       <ComputersCanvas />
-      
+
 
       {/* <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>

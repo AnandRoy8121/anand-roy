@@ -1,3 +1,4 @@
+'use client';
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 // import { OrbitControls, Stage } from "@react-three/drei";
@@ -6,10 +7,10 @@ import { styles } from "../styles";
 import {
   ContactShadows,
 } from "@react-three/drei";
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 
 const About = () => {
+
   return (
     <div
       className={`flex flex-col items-center justify-center w-full h-full`}
@@ -47,29 +48,32 @@ const About = () => {
             transform your digital vision into a success story.
           </p>
           <div className="flex gap-2">
-          <a className="violet-gradient font-semibold text-xs sm:text-sm px-4 py-2 rounded-md mx-auto cursor-pointer" href="#contact">
-            Contact Me
-          </a>
-          <div className="flex mx-auto items-center justify-center gap-2 px-4 py-2 violet-gradient rounded-xl cursor-pointer">
-        <FileDownloadIcon/>
-        <a className="font font-semibold text-xs sm:text-sm" href="/resume/Resume_Anand.pdf" download>Download Resume</a>
-        </div>
-        </div>
+            <a className="violet-gradient font-semibold text-xs sm:text-sm px-4 py-2 rounded-md mx-auto cursor-pointer" href="#contact">
+              Contact Me
+            </a>
+          </div>
         </div>
         <div className='h-screen px-5 sm:px-1 w-full sm:w-1/3 flex items-center justify-center'>
-        <Canvas eventPrefix="client" camera={{ position: [0, 0, 4], fov: 40 }}>
-      <ambientLight intensity={0.7} />
-      <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
-      {/* <Environment preset={null} background blur={1} /> */}
-      <ContactShadows resolution={512} position={[0, -0.8, 0]} opacity={1} scale={10} blur={2} far={0.8} />
-        <group position-y={-0.8}>
-        <Avatar rotation={[0, 0, 0]} />
-        </group>
-    </Canvas>
-    </div>
+          <Suspense fallback={
+            <div className="w-full h-full flex justify-center items-center">
+              <img src="/anand-roy/models/person.png" alt="loading" className="w-[300px] h-[300px] object-contain" />
+            </div>
+          }>
+            <Canvas eventPrefix="client" camera={{ position: [0, 0, 4], fov: 40 }}>
+              <ambientLight intensity={0.7} />
+              <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
+              {/* <Environment preset={null} background blur={1} /> */}
+              <ContactShadows resolution={512} position={[0, -0.8, 0]} opacity={1} scale={10} blur={2} far={0.8} />
+              <group position-y={-0.8}>
+                <Avatar rotation={[0, 0, 0]} />
+              </group>
+            </Canvas>
+          </Suspense>
+        </div>
       </div>
     </div>
   );
 };
 
 export default About;
+

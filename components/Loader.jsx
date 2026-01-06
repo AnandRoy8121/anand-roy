@@ -1,6 +1,6 @@
 import { Html, useProgress } from "@react-three/drei";
 
-const CanvasLoader = () => {
+const CanvasLoader = ({ image }) => {
   const { progress } = useProgress();
   return (
     <Html
@@ -13,7 +13,11 @@ const CanvasLoader = () => {
         flexDirection: "column",
       }}
     >
-      <span className='canvas-loader'></span>
+      {image ? (
+        <img src={image} alt="Loading..." style={{ width: 300, height: 300, objectFit: 'contain' }} />
+      ) : (
+        <span className='canvas-loader'></span>
+      )}
       <p
         style={{
           fontSize: 14,
@@ -22,7 +26,7 @@ const CanvasLoader = () => {
           marginTop: 40,
         }}
       >
-        {/* {progress.toFixed(2)}% */}
+        {progress.toFixed(2)}%
       </p>
     </Html>
   );

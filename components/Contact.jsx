@@ -1,3 +1,4 @@
+'use client';
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
@@ -9,7 +10,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LoadingSpinner from './LoadingSpinner';
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -24,41 +25,50 @@ const Contact = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const response = await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message}),
-      });
+    // TODO: Replace with your actual service ID, template ID, and public key
+    // You can get these from https://dashboard.emailjs.com/
+    const serviceId = 'YOUR_SERVICE_ID'; // e.g. service_xyz
+    const templateId = 'YOUR_TEMPLATE_ID'; // e.g. template_xyz
+    const publicKey = 'YOUR_PUBLIC_KEY';   // e.g. user_xyz
 
-      if (response.ok) {
-        //console.log('Email sent successfully');
-        setIsLoading(false);
-        setEmail('')
-        setName('')
-        setMessage('')
-        // Handle success, show a success message, or redirect the user
-      } else {
-        alert('Failed to send email');
-        // Handle error, show an error message, or redirect the user
-      }
-    } catch (error) {
-      console.error('Error:', error);
+    if (serviceId === 'YOUR_SERVICE_ID') {
+      alert("Please configure EmailJS keys in components/Contact.jsx");
       setIsLoading(false);
+      return;
     }
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: "Anand Roy", // Your name
+      message: message,
+    };
+
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert("Thank you. I will get back to you as soon as possible.");
+        setName('');
+        setEmail('');
+        setMessage('');
+      }, (err) => {
+        console.log('FAILED...', err);
+        alert("Something went wrong. Please try again.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
     <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-4 overflow-hidden` }
+      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-4 overflow-hidden`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
@@ -67,17 +77,17 @@ const Contact = () => {
       >
         <h3 className={`${styles.sectionHeadText} text-2xl text-center font-bold`}>Contact</h3>
         <div className="flex flex-col sm:flex-row justify-between items-center">
-        <div className="flex flex-col gap-2">
-        <p className="font-semibold text-purple-400"><PhoneAndroidIcon/><span className="text-white"> +91 8639688816</span></p>
-        <p className="font-semibold text-purple-400"><EmailOutlined/><span className="text-white"> anandroy151997@gmail.com</span></p>
-        <p className="font-semibold text-purple-400"><LocationOnIcon/><span className="text-white">Visakhapatnam</span></p>
-        </div>
-        <ul className="flex flex-row gap-4 items-center justify-center mx-4 my-4 px-4 py-2">
-            
-            <a href="https://www.linkedin.com/in/anand-roy-2ba991127/" target="_blank"><li><LinkedInIcon fontSize="large" className="text-blue-700 cursor-pointer duration-75 translate-x-2 hover:scale-125"/></li></a>
-            <a href="https://github.com/AnandRoy8121" target="_blank"><li><GitHubIcon fontSize="large" className="text-white cursor-pointer duration-75 translate-x-2 hover:scale-125"/></li></a>
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold text-purple-400"><PhoneAndroidIcon /><span className="text-white"> +91 8639688816</span></p>
+            <p className="font-semibold text-purple-400"><EmailOutlined /><span className="text-white"> anandroy151997@gmail.com</span></p>
+            <p className="font-semibold text-purple-400"><LocationOnIcon /><span className="text-white">Visakhapatnam</span></p>
+          </div>
+          <ul className="flex flex-row gap-4 items-center justify-center mx-4 my-4 px-4 py-2">
+
+            <a href="https://www.linkedin.com/in/anand-roy-2ba991127/" target="_blank"><li><LinkedInIcon fontSize="large" className="text-blue-700 cursor-pointer duration-75 translate-x-2 hover:scale-125" /></li></a>
+            <a href="https://github.com/AnandRoy8121" target="_blank"><li><GitHubIcon fontSize="large" className="text-white cursor-pointer duration-75 translate-x-2 hover:scale-125" /></li></a>
           </ul>
-      </div>
+        </div>
         <form
           className='mt-6 flex flex-col gap-4'
         >
@@ -118,7 +128,7 @@ const Contact = () => {
           <button
             type='submit'
             className='violet-gradient py-3 px-10 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary mx-auto cursor-pointer'
-          onClick={handleSubmit}>
+            onClick={handleSubmit}>
             {isLoading ? <LoadingSpinner /> : 'Send'}
           </button>
         </form>
@@ -130,9 +140,9 @@ const Contact = () => {
       >
         <EarthCanvas />
       </motion.div>
-      
+
       <h1
-        className={`${styles.heroHeadText} text-white text-center text-xl sm:text-3xl font-semibold font-serif` }
+        className={`${styles.heroHeadText} text-white text-center text-xl sm:text-3xl font-semibold font-serif`}
       >
         Contact Me
       </h1>
@@ -141,3 +151,4 @@ const Contact = () => {
 };
 
 export default SectionWrapper(Contact, "contact");
+

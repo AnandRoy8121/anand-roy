@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from "react";
 
 const Testimonial = () => {
@@ -30,8 +31,8 @@ const Testimonial = () => {
     {
       review:
         "I was blown away by [Your Name]'s logo design. They captured the essence of our brand with a single image. Their ability to understand our vision and translate it into an impactful logo is a testament to their design skills. A true pleasure to work with!",
-        user: "Abdul Raheem",
-        position: "CEO, HFC"
+      user: "Abdul Raheem",
+      position: "CEO, HFC"
     },
   ];
 
@@ -55,10 +56,10 @@ const Testimonial = () => {
         </p>
         <p className="text-right text-gray-700 font-bold text-sm">({Images[slide].position})</p>
       </div>
-      <div className="absolute top-[25%] -translate-x-0 -translate-y-[-50%] ease-in left-5 text-2xl rounded-full p-2 group-hover:bg-black/50 text-white cursor-pointer duration-700" onClick={()=>slideLeft()}>
+      <div className="absolute top-[25%] -translate-x-0 -translate-y-[-50%] ease-in left-5 text-2xl rounded-full p-2 group-hover:bg-black/50 text-white cursor-pointer duration-700" onClick={() => slideLeft()}>
         {/* <MdKeyboardArrowLeft size={30} onClick={slideLeft} /> */}{"<"}
       </div>
-      <div className="absolute top-[25%] -translate-x-0 -translate-y-[-50%] ease-out right-5 text-2xl rounded-full p-2 group-hover:bg-black/50 text-white cursor-pointer duration-700" onClick={()=>slideRight()}>
+      <div className="absolute top-[25%] -translate-x-0 -translate-y-[-50%] ease-out right-5 text-2xl rounded-full p-2 group-hover:bg-black/50 text-white cursor-pointer duration-700" onClick={() => slideRight()}>
         {/* <MdKeyboardArrowRight size={30} onClick={slideRight} /> */}{">"}
       </div>
       {/* <div className="flex top-4 justify-center p-2">
